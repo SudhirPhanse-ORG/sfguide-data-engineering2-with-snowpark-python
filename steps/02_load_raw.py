@@ -42,7 +42,7 @@ def load_raw_table(session, tname=None, s3dir=None, year=None, schema=None):
 
 def load_all_raw_tables(session):
     _ = session.sql("ALTER WAREHOUSE HOL_WH SET WAREHOUSE_SIZE = XLARGE WAIT_FOR_COMPLETION = TRUE").collect()
-
+    _ = session.sql("USE DATABASE HOL_DB").collect()
     for s3dir, data in TABLE_DICT.items():
         tnames = data['tables']
         schema = data['schema']
